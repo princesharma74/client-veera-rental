@@ -1,0 +1,38 @@
+const colorClasses: Record<string, string> = {
+    blue: "bg-blue-500",
+    red: "bg-red-500",
+    yellow: "bg-yellow-500",
+    green: "bg-green-500",
+    white: "bg-white",
+    black: "bg-black",
+    silver: "bg-gray-300",
+    gray: "bg-gray-500",
+    purple: "bg-purple-500",
+    orange: "bg-orange-500",
+    brown: "bg-amber-700",
+    pink: "bg-pink-500",
+    gold: "bg-yellow-400",
+    beige: "bg-neutral-200",
+    teal: "bg-teal-500",
+    maroon: "bg-red-700",
+    navy: "bg-blue-800",
+    salmon: "bg-rose-300",
+    cyan: "bg-cyan-500",
+    olive: "bg-lime-700",
+    lime: "bg-lime-500",
+    indigo: "bg-indigo-500",
+    violet: "bg-violet-500",
+    turquoise: "bg-teal-400",
+    plum: "bg-purple-700",
+    lavender: "bg-purple-200",
+    tan: "bg-yellow-300",
+    khaki: "bg-amber-400",
+    snow: "bg-white",
+    ivory: "bg-neutral-100",
+    azure: "bg-cyan-100",
+    mint: "bg-teal-100",
+  };
+  
+  export default function getColorClass(color: string): string {
+    return colorClasses[color.toLowerCase()] || "bg-gray-200"; // Default color fallback
+  }
