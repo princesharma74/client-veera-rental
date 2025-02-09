@@ -23,7 +23,7 @@ const Header : React.FC<HeaderProps> = ({
         />
         <div className="absolute inset-0 bg-black opacity-50 rounded-xl z-1"></div>
         <div className="max-w-7xl mx-auto p-10 z-10 text-white w-full flex items-end">
-          <div className="text-6xl md:text-7xl font-bold">{children}</div>
+          <div className="text-5xl md:text-7xl font-bold">{children}</div>
         </div>
       </div>
   )

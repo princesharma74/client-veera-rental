@@ -102,11 +102,11 @@ const Contact = () => {
       </div>
       <div className="max-w-7xl mx-auto sm:px-6 lg:px-6 px-5 py-24 flex">
         <Card className="lg:w-1/3 md:w-1/2 bg-black rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0 relative z-10 shadow-md text-white">
-          <CardTitle className="text-white text-2xl font-semibold title-font mb-5 text-center">
+          <CardTitle className="text-white text-2xl font-semibold title-font mb-5">
           Let us contact you
           </CardTitle>
           <CardDescription className="text-gray-200">Get in touch with us for any inquiries about our services or to book a rental.</CardDescription>
-          <CardContent>
+          <CardContent className="p-0">
             <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(onSubmit)}
@@ -116,7 +116,7 @@ const Contact = () => {
                   control={form.control}
                   name="selectedPackage"
                   render={({ field }) => (
-                    <FormItem>
+                    <FormItem className="">
                       <FormLabel>Package</FormLabel>
                       <FormControl>
                         <Select
@@ -246,4 +246,3 @@ const Contact = () => {
 }
 
 export default Contact
-
