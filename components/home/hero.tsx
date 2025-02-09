@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 export default function HeroSection() {
   return (
-    <section className="relative rounded-xl m-2 h-fit pt-72 flex">
+    <section className="relative rounded-xl m-2 h-fit pt-32 sm:pt-72 flex">
       <Image
         alt="Car"
         src="/steering_interior3.jpg"
