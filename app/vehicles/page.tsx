@@ -50,8 +50,7 @@ const Page = () => {
 
     try {
       const filterString = buildFilterString();
-      const resultList = await pb.collection("cars").getList(page, 10, {
-      }); // Fetch 10 cars per page
+      const resultList = await pb.collection("cars").getList(page, 10); // Fetch 10 cars per page
       const transformedCars: CarDetailsType[] = resultList.items.map((item: any) => ({
         id: item.id,
         KMs: item.KMs,

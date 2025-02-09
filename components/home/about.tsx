@@ -31,8 +31,8 @@ export default function About() {
       <div className="text-sm">About Us</div>
       <div>
         <h2 className="text-4xl font-medium mt-4">
-          We combine over a decade of experience with a passion for delivering
-          top-quality automotive services.
+          We combine over a decade of experience with a passion <span className='text-gray-500'>for delivering
+          top-quality automotive services.</span>
         </h2>
       </div>
       <div className='lg:hidden'>

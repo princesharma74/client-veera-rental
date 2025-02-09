@@ -87,7 +87,7 @@ const CarCard: React.FC<CarDetailsProps> = ({
                         <div className="text-white text-sm">
                             {isExpanded
                                 ? additional_info
-                                : additional_info.slice(0, 50) + "..."}
+                                : additional_info.slice(0, 100) + "..."}
                             <span
                                 onClick={toggleExpand}
                                 className="text-secondary cursor-pointer ml-1"
