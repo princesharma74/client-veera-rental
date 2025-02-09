@@ -15,6 +15,7 @@ import { CarDetailsType } from "@/types";
 import { Button } from "../ui/button";
 import PricingDialog from "./pricingdialog";
 import { getImageURL } from "@/lib/db";
+import { contactInfo } from "@/config/site";
 
 interface CarDetailsProps {
     carDetails: CarDetailsType;
@@ -57,6 +58,13 @@ const CarCard: React.FC<CarDetailsProps> = ({
         if (currentImageIndex > 0) {
             setCurrentImageIndex(currentImageIndex - 1);
         }
+    };
+
+    const handleWhatsAppClick = () => {
+        const phoneNumber = contactInfo.phoneNumber;
+        const message = `Hello, I am interested in the ${brand} ${model} ${year}. Could you provide more details?`;
+        const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+        window.open(url, '_blank');
     };
 
     return (
@@ -135,7 +143,10 @@ const CarCard: React.FC<CarDetailsProps> = ({
                 </div>
                 <div className="w-full">
                     <div className="grid grid-cols-2 border-gray-500 w-full">
-                        <Button className="p-3 bg-green-500 rounded-none text-black hover:bg-green-600 hover:text-white">
+                        <Button 
+                            className="p-3 bg-green-500 rounded-none text-black hover:bg-green-600 hover:text-white"
+                            onClick={handleWhatsAppClick}
+                        >
                             <div className="flex justify-center items-center gap-2">
                                 <Phone size={20} />
                                 <div>Call</div>

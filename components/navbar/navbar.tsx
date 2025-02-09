@@ -4,9 +4,9 @@ import { useCallback, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import MobileNav from "./mobilenav";
-import { ArrowUp } from "lucide-react";
 import Link from "next/link";
-import { navs } from "@/config/site";
+import { contactInfo, navs } from "@/config/site";
+import { MessageCircle } from "lucide-react";
 
 export default function Navbar() {
   const [isVisible, setIsVisible] = useState(true);
@@ -70,12 +70,10 @@ export default function Navbar() {
           isVisible ? "block" : "hidden"
         }`}
       >
-        <div
-          onClick={scrollToTop}
-          className="w-10 h-10 p-2 bg-gray-800 text-white rounded-full cursor-pointer hover:bg-yellow-200 hover:text-gray-800"
-        >
-          <ArrowUp />
-        </div>
+        <Link href={`https://wa.me/${contactInfo.phoneNumber}`}>
+        <div className="w-10 h-10 p-2 bg-green-600 text-white rounded-full cursor-pointer hover:bg-yellow-200 hover:text-gray-800">
+        <MessageCircle />
+        </div></Link>
       </div>
     </>
   );

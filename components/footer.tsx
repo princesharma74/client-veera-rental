@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { Facebook, Instagram, Phone, Mail, MapPin } from "lucide-react"
+import { contactInfo } from "@/config/site"
 
 const Footer = () => {
   return (
@@ -67,18 +68,18 @@ const Footer = () => {
               <li className="flex items-center">
                 <Phone className="w-5 h-5 mr-2" />
                 <a href="tel:+1234567890" className="hover:text-[#F2C165]">
-                  +61 (466) 877-527
+                {contactInfo.phoneNumber}
                 </a>
               </li>
               <li className="flex items-center">
                 <Mail className="w-5 h-5 mr-2" />
                 <a href="mailto:info@veerarentals.com" className="hover:text-[#F2C165]">
-                  info@veerarentals.com
+                {contactInfo.emailId}
                 </a>
               </li>
               <li className="flex items-center">
                 <MapPin className="w-5 h-5 mr-2" />
-                <span>53/24 Jutland Way, Epping VIC 3076, Australia</span>
+                <span>{contactInfo.address}</span>
               </li>
             </ul>
           </div>
@@ -92,12 +93,12 @@ const Footer = () => {
                 href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-[#F2C165]"
+                className="hover:text-secondary"
               >
                 <Instagram className="w-6 h-6" />
               </a>
               <a
-                href="https://wa.me/your_whatsapp_number"
+                href={`https://wa.me/${contactInfo.phoneNumber}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-[#F2C165]"
