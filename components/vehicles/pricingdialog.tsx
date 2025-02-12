@@ -91,7 +91,7 @@ const PricingDialog: React.FC<PricingDialogProps> = ({
     const rentRate = isShortBooking ? dailyRate : weeklyRate;
     const rent = rentRate * dayDifference;
 
-    return `Rent: $${rent.toFixed(2)} (${rentRate.toFixed(2)}/day) \nDeposit: $${deposit} (Refundable) \nEstimated amount payable: $${
+    return `Pickup Date: ${format(pickup, 'dd/MM/yyyy')}\nReturn Date: ${format(returnDate, 'dd/MM/yyyy')}\nRent: $${rent.toFixed(2)} (${rentRate.toFixed(2)}/day) \nDeposit: $${deposit} (Refundable) \nEstimated amount payable: $${
       ( rent + deposit ).toFixed(2)
     }`;
   };
