@@ -33,6 +33,7 @@ const CarCard: React.FC<CarDetailsProps> = ({
         year,
         color,
         fuel_type,
+        body_type,
         category,
         seats,
         daily_price,
@@ -62,7 +63,7 @@ const CarCard: React.FC<CarDetailsProps> = ({
 
     const handleWhatsAppClick = () => {
         const phoneNumber = contactInfo.phoneNumber;
-        const message = `Hello, I am interested in the ${brand} ${model} ${year}. Could you provide more details?`;
+        const message = `Hello, I want to know more about Rent-to-own options for ${brand} ${model} ${year}. Could you provide more details?`;
         const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
         window.open(url, '_blank');
     };
@@ -138,7 +139,7 @@ const CarCard: React.FC<CarDetailsProps> = ({
                     </div>
                     <div className="flex flex-col justify-between items-center w-full p-2">
                         <CarFront size={25} />
-                        <div className="text-xs">{category}</div>
+                        <div className="text-xs">{body_type}</div>
                     </div>
                 </div>
                 <div className="w-full">
@@ -149,10 +150,10 @@ const CarCard: React.FC<CarDetailsProps> = ({
                         >
                             <div className="flex justify-center items-center gap-2">
                                 <Phone size={20} />
-                                <div>Call</div>
+                                <div>Rent to own</div>
                             </div>
                         </Button>
-                        <PricingDialog dailyRate={daily_price} deposit={deposit} weeklyRate={weekly_price}/>
+                        <PricingDialog carName={`${brand} ${model} ${year}`} dailyRate={daily_price} deposit={deposit} weeklyRate={(weekly_price/7)}/>
                    </div>
                 </div>
             </div>

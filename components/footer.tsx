@@ -1,6 +1,6 @@
 import Link from "next/link"
-import { Facebook, Instagram, Phone, Mail, MapPin } from "lucide-react"
-import { contactInfo } from "@/config/site"
+import { Facebook, Instagram, Phone, Mail, MapPin, Divide } from "lucide-react"
+import { contactInfo, services } from "@/config/site"
 
 const Footer = () => {
   return (
@@ -35,31 +35,13 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4">Services</h3>
             <ul className="space-y-2">
-              <li>
-                <Link href="/services/daily-rentals" className="hover:text-[#F2C165]">
-                  Daily Rentals
-                </Link>
-              </li>
-              <li>
-                <Link href="/services/private-rentals" className="hover:text-[#F2C165]">
-                  Private Rentals
-                </Link>
-              </li>
-              <li>
-                <Link href="/services/rent-to-own" className="hover:text-[#F2C165]">
-                  Rent-to-Own
-                </Link>
-              </li>
-              <li>
-                <Link href="/services/rideshare-rentals" className="hover:text-[#F2C165]">
-                  Rideshare Rentals
-                </Link>
-              </li>
-              <li>
-                <Link href="/services/mechanical" className="hover:text-[#F2C165]">
-                  Mechanical Services
-                </Link>
-              </li>
+              {services.map((item) =>(
+                <li key={item.title}>
+                  <Link href={item.href} className="hover:text-[#F2C165]">
+                  {item.title}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
           <div>
@@ -67,8 +49,8 @@ const Footer = () => {
             <ul className="space-y-2">
               <li className="flex items-center">
                 <Phone className="w-5 h-5 mr-2" />
-                <a href="tel:+1234567890" className="hover:text-[#F2C165]">
-                {contactInfo.phoneNumber}
+                <a href={`tel:${contactInfo.phoneNumber}`} className="hover:text-[#F2C165]">
+                0{contactInfo.phoneNumber}
                 </a>
               </li>
               <li className="flex items-center">
@@ -86,16 +68,8 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4">Follow Us</h3>
             <div className="flex space-x-4">
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#F2C165]">
+              <a href="https://www.facebook.com/profile.php?id=61572318222083" target="_blank" rel="noopener noreferrer" className="hover:text-[#F2C165]">
                 <Facebook className="w-6 h-6" />
-              </a>
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-secondary"
-              >
-                <Instagram className="w-6 h-6" />
               </a>
               <a
                 href={`https://wa.me/${contactInfo.phoneNumber}`}

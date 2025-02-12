@@ -46,5 +46,39 @@ export const mechanical_services = [
 export const contactInfo = {
   phoneNumber: +61466877527,
   address: '53/24 Jutland Way, Epping VIC 3076, Australia',
-  emailId: 'info@veerarental.au'
+  emailId: 'veerarentals@gmail.com'
 }
+
+export const services = [
+          {
+            title: "Daily Rentals",
+            href: "/vehicles",
+            description:
+              "Perfect for short trips, business errands, or weekend getaways, our daily rentals provide a convenient solution with flexible terms. Enjoy a wide range of well-maintained vehicles without the hassle of long-term commitments.",
+          },
+          {
+            title: "Private Rentals",
+            href: "/vehicles",
+            description: "Need a vehicle for an extended period? Our private rentals offer a reliable and budget-friendly option. Ideal for personal use, temporary needs, or long-term projects, we ensure you stay on the road comfortably and confidently.",
+          },
+          {
+            title: "Rent-to-Own",
+            href: "/vehicles",
+            description: "Our rent-to-own program makes car ownership achievable and stress-free. Drive the car you want while making payments that lead to full ownership over time. No large upfront costs, just an affordable path to owning your dream vehicle.",
+          },
+          {
+            title: "Rideshare Rentals",
+            href: "/vehicles",
+            description: "Are you a rideshare driver on platforms like Uber or Didi? We’ve got you covered with fuel-efficient, hybrid, and dependable cars designed to help you earn more. Enjoy a seamless driving experience with rentals built for your business success.",
+          },
+          {
+            title: "Wedding Cars",
+            href: "/vehicles",
+            description: "Arrive in style with our luxury wedding car services, featuring Lexus and a wide range of premium vehicles. Make your special day unforgettable with elegance and comfort.",
+          },
+          {
+            title: "Mechanical Services/Automative",
+            href: "/services/mechanical",
+            description: "We provide top-quality mechanical and automotive services, ensuring your vehicles are well-maintained, safe, and running smoothly. Our expert team specializes in repairs, servicing, and diagnostics for all vehicle types.",
+          }
+]

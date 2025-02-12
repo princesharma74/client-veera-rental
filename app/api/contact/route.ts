@@ -140,7 +140,7 @@ export async function POST(req: Request) {
               <li><strong>Message:</strong> ${message}</li>
             </ul>
             <p>
-              If you need to update your submission or have additional questions, please feel free to contact us at <a href="mailto:info@veerarental.au">info@veerarental.au</a>.
+              If you need to update your submission or have additional questions, please feel free to contact us at <a href="mailto:veerarentals@gmail.com">veerarentals@gmail.com</a>.
             </p>
             <p>
               We appreciate your interest in our services and look forward to assisting you.

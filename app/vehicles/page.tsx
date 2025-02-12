@@ -51,31 +51,33 @@ const Page = () => {
     try {
       const filterString = buildFilterString();
       const resultList = await pb.collection("cars").getList(page, 10); // Fetch 10 cars per page
-      const transformedCars: CarDetailsType[] = resultList.items.map((item: any) => ({
-        id: item.id,
-        KMs: item.KMs,
-        additional_info: item.additional_info,
-        body_type: item.body_type,
-        brand: item.brand,
-        color: item.color,
-        description: item.description,
-        fuel_type: item.fuel_type,
-        image_url: item.image_url,
-        model: item.model,
-        daily_price: item.daily_price,
-        weekly_price: item.weekly_price,
-        seats: item.seats,
-        transmission: item.transmission,
-        images: item.images,
-        deposit: item.deposit,
-        status: item.status,
-        year: item.year,
-        collectionId: item.collectionId, // Ensure this property exists in item
-        category: item.category, // Ensure this property exists in item
-        collectionName: item.collectionName, // Ensure this property exists in item
-        created: item.created, 
-        updated: item.updated, 
-      }));
+      const transformedCars: CarDetailsType[] = resultList.items.map(
+        (item: any) => ({
+          id: item.id,
+          KMs: item.KMs,
+          additional_info: item.additional_info,
+          body_type: item.body_type,
+          brand: item.brand,
+          color: item.color,
+          description: item.description,
+          fuel_type: item.fuel_type,
+          image_url: item.image_url,
+          model: item.model,
+          daily_price: item.daily_price,
+          weekly_price: item.weekly_price,
+          seats: item.seats,
+          transmission: item.transmission,
+          images: item.images,
+          deposit: item.deposit,
+          status: item.status,
+          year: item.year,
+          collectionId: item.collectionId, // Ensure this property exists in item
+          category: item.category, // Ensure this property exists in item
+          collectionName: item.collectionName, // Ensure this property exists in item
+          created: item.created,
+          updated: item.updated,
+        })
+      );
       setCars(transformedCars);
       setTotalPages(resultList.totalPages);
     } catch (error) {
@@ -92,7 +94,9 @@ const Page = () => {
     setPage(newPage);
   };
 
-  const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleFilterChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target;
     setFilters((prevFilters) => ({
       ...prevFilters,
@@ -161,24 +165,36 @@ const Page = () => {
           ))}
         </div>
         <div>
-        <Pagination>
-          <PaginationContent>
-            <PaginationItem>
-              <PaginationPrevious href="#" onClick={(e) => handlePageChange(Math.max(page - 1, 1), e)} />
-            </PaginationItem>
-            {[...Array(totalPages)].map((_, index) => (
-              <PaginationItem key={index}>
-                <PaginationLink href="#" isActive={page === index + 1} onClick={(e) => handlePageChange(index + 1, e)}>
-                  {index + 1}
-                </PaginationLink>
+          <Pagination>
+            <PaginationContent>
+              <PaginationItem>
+                <PaginationPrevious
+                  href="#"
+                  onClick={(e) => handlePageChange(Math.max(page - 1, 1), e)}
+                />
               </PaginationItem>
-            ))}
-            <PaginationItem>
-              <PaginationNext href="#" onClick={(e) => handlePageChange(Math.min(page + 1, totalPages), e)} />
-            </PaginationItem>
-          </PaginationContent>
-        </Pagination>
-</div>
+              {[...Array(totalPages)].map((_, index) => (
+                <PaginationItem key={index}>
+                  <PaginationLink
+                    href="#"
+                    isActive={page === index + 1}
+                    onClick={(e) => handlePageChange(index + 1, e)}
+                  >
+                    {index + 1}
+                  </PaginationLink>
+                </PaginationItem>
+              ))}
+              <PaginationItem>
+                <PaginationNext
+                  href="#"
+                  onClick={(e) =>
+                    handlePageChange(Math.min(page + 1, totalPages), e)
+                  }
+                />
+              </PaginationItem>
+            </PaginationContent>
+          </Pagination>
+        </div>
       </div>
     </>
   );
