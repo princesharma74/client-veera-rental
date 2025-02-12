@@ -13,9 +13,12 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import Loader from "@/components/loader";
 
 const Page = () => {
   const [cars, setCars] = useState<CarDetailsType[]>([]);
+  const [loading, setLoading] = useState(true)
+
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [filters, setFilters] = useState({
@@ -80,6 +83,7 @@ const Page = () => {
       );
       setCars(transformedCars);
       setTotalPages(resultList.totalPages);
+      setLoading(false)
     } catch (error) {
       console.error("Failed to fetch car details:", error);
     }
@@ -94,6 +98,7 @@ const Page = () => {
     setPage(newPage);
   };
 
+  /*
   const handleFilterChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
@@ -103,6 +108,7 @@ const Page = () => {
       [name]: value,
     }));
   };
+  */
 
   return (
     <>
@@ -159,11 +165,14 @@ const Page = () => {
             <option value="high-to-low">Price: High to Low</option>
           </select>
         </div> */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {cars.map((car) => (
-            <CarCard key={car.id} carDetails={car} />
-          ))}
-        </div>
+        {
+          loading ? <Loader/> : 
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {cars.map((car) => (
+              <CarCard key={car.id} carDetails={car} />
+            ))}
+          </div>
+        }
         <div>
           <Pagination>
             <PaginationContent>

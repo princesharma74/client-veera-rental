@@ -49,8 +49,8 @@ const Footer = () => {
             <ul className="space-y-2">
               <li className="flex items-center">
                 <Phone className="w-5 h-5 mr-2" />
-                <a href={`tel:${contactInfo.phoneNumber}`} className="hover:text-[#F2C165]">
-                0{contactInfo.phoneNumber}
+                <a href={`tel:${contactInfo.phoneNumber.toString().replace("+61", "0")}`} className="hover:text-[#F2C165]">
+                  {contactInfo.phoneNumber.toString().replace("+61", "0")}
                 </a>
               </li>
               <li className="flex items-center">

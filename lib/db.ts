@@ -1,6 +1,6 @@
 import PocketBase from 'pocketbase';
-// export const pb = new PocketBase(process.env.NEXT_PUBLIC_API_URL).autoCancellation(false);;
-export const pb = new PocketBase(process.env.NEXT_PUBLIC_API_URL)
+export const pb = new PocketBase(process.env.NEXT_PUBLIC_API_URL).autoCancellation(false);;
+// export const pb = new PocketBase(process.env.NEXT_PUBLIC_API_URL)
 
 export const getImageURL = (
   collection_name: string,

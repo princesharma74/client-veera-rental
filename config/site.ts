@@ -44,7 +44,7 @@ export const mechanical_services = [
 ]
 
 export const contactInfo = {
-  phoneNumber: +61466877527,
+  phoneNumber: '+61466877527',
   address: '53/24 Jutland Way, Epping VIC 3076, Australia',
   emailId: 'veerarentals@gmail.com'
 }
