@@ -3,7 +3,7 @@ import { Wrench, Car, PenToolIcon as Tool, Gauge, Battery, Shield } from "lucide
 
 export const navs : Nav[] = [
   { name: "Home", link: "/" },
-  { name: "Mechanical Services", link: "/services/mechanical" },
+  { name: "Mechanical Services", link: "/mechanical" },
   { name: "About", link: "/#about" },
   { name: "Testimonials", link: "/#testimonials" },
   { name: "Contact", link: "/#contact" },

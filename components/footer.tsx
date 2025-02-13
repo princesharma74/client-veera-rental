@@ -16,17 +16,17 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/services" className="hover:text-[#F2C165]">
+                <Link href="/mechanical" className="hover:text-[#F2C165]">
                   Services
                 </Link>
               </li>
               <li>
-                <Link href="/fleet" className="hover:text-[#F2C165]">
+                <Link href="/vehicles" className="hover:text-[#F2C165]">
                   Fleet
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-[#F2C165]">
+                <Link href="/#contact" className="hover:text-[#F2C165]">
                   Contact Us
                 </Link>
               </li>
