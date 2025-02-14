@@ -14,7 +14,7 @@ export default function Services() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto sm:px-6 lg:px-6 grid grid-cols-2 gap-16 mt-16">
+      <div className="max-w-7xl mx-auto sm:px-6 lg:px-6 grid grid-cols-1 md:grid-cols-2 gap-16 mt-16">
         {services.map((feature, index) => (
           <div key={index} className="space-y-4">
             <span className="text-sm text-gray-400 text-secondary">({(index + 1).toString().padStart(2, "0")})</span>
