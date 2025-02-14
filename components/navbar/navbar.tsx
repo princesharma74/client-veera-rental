@@ -30,9 +30,9 @@ export default function Navbar() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
   return (
-    <>
+    <div className="relative w-full">
       <nav
-        className={`max-w-7xl mx-auto sm:px-6 lg:px-6 fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 bg-transparent transition-transform duration-300 ease-out ${
+        className={`absolute max-w-7xl mx-auto px-6 sm:px-6 lg:px-6 top-0 left-0 right-0 z-50 flex items-center justify-between bg-transparent transition-transform duration-300 ease-out ${
           isVisible ? "transform translate-y-0" : "transform -translate-y-full"
         }`}
       >
@@ -65,13 +65,13 @@ export default function Navbar() {
           </div>
         </div>
       </nav>
-      <div className="fixed bottom-4 right-4 z-50">
+      <div className="fixed bottom-4 right-16 z-50">
         <Link href={`https://wa.me/${contactInfo.phoneNumber}`}>
           <div className="w-10 h-10 p-2 bg-green-600 text-white rounded-full cursor-pointer hover:bg-yellow-200 hover:text-gray-800">
             <MessageCircle />
           </div>
         </Link>
       </div>
-    </>
+    </div>
   );
 }

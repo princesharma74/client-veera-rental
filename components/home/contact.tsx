@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useState } from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
@@ -19,7 +19,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Card, CardContent, CardDescription, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardTitle,
+} from "@/components/ui/card";
 import {
   Dialog,
   DialogContent,
@@ -41,7 +46,6 @@ const formSchema = z.object({
 });
 
 type FormData = z.infer<typeof formSchema>;
-
 
 const Contact = () => {
   const [message, setMessage] = useState("");
@@ -103,9 +107,12 @@ const Contact = () => {
       <div className="max-w-7xl mx-auto sm:px-6 lg:px-6 px-5 py-24 flex">
         <Card className="lg:w-1/3 md:w-1/2 bg-black rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0 relative z-10 shadow-md text-white">
           <CardTitle className="text-white text-2xl font-semibold title-font mb-5">
-          Let us contact you
+            Let us contact you
           </CardTitle>
-          <CardDescription className="text-gray-200">Get in touch with us for any inquiries about our services or to book a rental.</CardDescription>
+          <CardDescription className="text-gray-200">
+            Get in touch with us for any inquiries about our services or to book
+            a rental.
+          </CardDescription>
           <CardContent className="p-0">
             <Form {...form}>
               <form
@@ -116,31 +123,31 @@ const Contact = () => {
                   control={form.control}
                   name="selectedPackage"
                   render={({ field }) => (
-                    <FormItem className="">
+                    <FormItem>
                       <FormLabel>Package</FormLabel>
                       <FormControl>
                         <Select
-                          onValueChange={field.onChange}
-                          defaultValue={field.value}
+                          value={field.value} // Explicitly set value
+                          onValueChange={(val) => field.onChange(val)} // Ensure proper change handling
                         >
                           <SelectTrigger className="border-white">
                             <SelectValue placeholder="Select a package" />
                           </SelectTrigger>
                           <SelectContent>
                             <SelectItem value="Daily Rentals">
-                            Daily Rentals
+                              Daily Rentals
                             </SelectItem>
                             <SelectItem value="Private Rentals">
-                            Private Rentals
+                              Private Rentals
                             </SelectItem>
                             <SelectItem value="Rent-to-Own">
-                            Rent-to-Own
+                              Rent-to-Own
                             </SelectItem>
                             <SelectItem value="Rideshare Rentals">
-                            Rideshare Rentals
+                              Rideshare Rentals
                             </SelectItem>
                             <SelectItem value="Mechanical Services">
-                            Mechanical Services
+                              Mechanical Services
                             </SelectItem>
                           </SelectContent>
                         </Select>
@@ -157,7 +164,11 @@ const Contact = () => {
                     <FormItem>
                       <FormLabel>First name</FormLabel>
                       <FormControl>
-                        <Input className="border-white" placeholder="John" {...field} />
+                        <Input
+                          className="border-white"
+                          placeholder="John"
+                          {...field}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -171,7 +182,11 @@ const Contact = () => {
                     <FormItem>
                       <FormLabel>Last name</FormLabel>
                       <FormControl>
-                        <Input className="border-white" placeholder="Doe" {...field} />
+                        <Input
+                          className="border-white"
+                          placeholder="Doe"
+                          {...field}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -185,7 +200,11 @@ const Contact = () => {
                     <FormItem>
                       <FormLabel>Email</FormLabel>
                       <FormControl>
-                        <Input className="border-white" placeholder="example@email.com" {...field} />
+                        <Input
+                          className="border-white"
+                          placeholder="example@email.com"
+                          {...field}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -199,7 +218,11 @@ const Contact = () => {
                     <FormItem>
                       <FormLabel>Phone number</FormLabel>
                       <FormControl>
-                        <Input className="border-white" placeholder="1234567890" {...field} />
+                        <Input
+                          className="border-white"
+                          placeholder="1234567890"
+                          {...field}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -213,7 +236,11 @@ const Contact = () => {
                     <FormItem>
                       <FormLabel>Message</FormLabel>
                       <FormControl>
-                        <Textarea className="border-white" placeholder="Your message" {...field} />
+                        <Textarea
+                          className="border-white"
+                          placeholder="Your message"
+                          {...field}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -223,7 +250,7 @@ const Contact = () => {
                 <Dialog>
                   <DialogTrigger asChild>
                     <Button
-                    variant={"secondary"}
+                      variant={"secondary"}
                       type="submit"
                       className="w-full py-2 px-4"
                     >
@@ -242,7 +269,7 @@ const Contact = () => {
         </Card>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Contact
+export default Contact;

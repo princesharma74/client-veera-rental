@@ -37,7 +37,7 @@ export default function About() {
       </div>
       <div className='lg:hidden'>
         <Image
-          src={"/yellow-car.png"}
+          src={"/black_lexus.png"}
           alt="yellow car"
           layout="responsive"
           width={500}
