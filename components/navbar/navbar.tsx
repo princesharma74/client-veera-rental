@@ -65,7 +65,7 @@ export default function Navbar() {
           </div>
         </div>
       </nav>
-      <div className="fixed bottom-4 right-16 z-50">
+      <div className="fixed bottom-4 right-4 z-50">
         <Link href={`https://wa.me/${contactInfo.phoneNumber}`}>
           <div className="w-10 h-10 p-2 bg-green-600 text-white rounded-full cursor-pointer hover:bg-yellow-200 hover:text-gray-800">
             <MessageCircle />
