@@ -1,36 +1,45 @@
 import nodemailer from "nodemailer";
 import SMTPTransport from "nodemailer/lib/smtp-transport";
+import { google } from "googleapis";
 import { NextResponse } from "next/server";
 
-// Load environment variables (Next.js automatically loads `.env.local`)
+const SMTP_HOST = process.env.SMTP_HOST!;
+const SMTP_PORT = process.env.SMTP_PORT!;
+const CLIENT_ID = process.env.CLIENT_ID!;
+const CLIENT_SECRET = process.env.CLIENT_SECRET!;
+const REDIRECT_URI = process.env.REDIRECT_URI!;
+const REFRESH_TOKEN = process.env.REFRESH_TOKEN!;
+const GMAILID=process.env.GMAILID!;
+
 export async function POST(req: Request) {
   const body = await req.json();
-
-  const { firstName, lastName, email, phoneNumber, selectedPackage, message } =
-    body;
+  const { firstName, lastName, email, phoneNumber, selectedPackage, message } = body;
 
   if (!firstName || !lastName || !email || !selectedPackage || !message) {
-    return NextResponse.json(
-      {
-        error:
-          "All required fields (firstName, lastName, email, selectedPackage, message) must be provided.",
-      },
-      { status: 400 }
-    );
+    return NextResponse.json({ error: "All required fields must be provided." }, { status: 400 });
   }
 
   try {
-    // Create a transporter
+    // OAuth2 client setup
+    const oAuth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
+    oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
+
+    // Get a fresh access token
+    const accessToken = await oAuth2Client.getAccessToken();
+
+    // Nodemailer transporter (Explicitly using SMTPTransport.Options)
     const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: process.env.SMTP_PORT,
-      secure: false, // Use STARTTLS
+      host: SMTP_HOST,
+      port: 465, // Use 587 if you prefer STARTTLS instead of SSL
+      secure: true, // Use `false` for port 587
       auth: {
-        user: process.env.EMAIL,
-        pass: process.env.PASSWORD,
+        type: "OAuth2",
+        user: GMAILID,
+        clientId: CLIENT_ID,
+        clientSecret: CLIENT_SECRET,
+        refreshToken: REFRESH_TOKEN,
+        accessToken: accessToken.token!,
       },
-      //   logger: true, // Enable debug logs
-      //   debug: true,
     } as SMTPTransport.Options);
 
     // Email HTML Template
@@ -41,30 +50,15 @@ export async function POST(req: Request) {
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <style>
-        /* General styles */
         body {
-          margin: 0;
-          padding: 0;
           font-family: Arial, sans-serif;
           background-color: #f4f4f4;
           color: #333;
         }
-        table {
-          border-spacing: 0;
-          width: 100%;
-        }
-        td {
-          padding: 0;
-        }
-        img {
-          border: 0;
-        }
         .email-container {
-          width: 100%;
           max-width: 600px;
           margin: 0 auto;
           background-color: #ffffff;
-          border: 1px solid #dddddd;
           border-radius: 8px;
           overflow: hidden;
         }
@@ -73,10 +67,6 @@ export async function POST(req: Request) {
           color: #000000;
           text-align: center;
           padding: 20px;
-        }
-        .email-header h1 {
-          margin: 0;
-          font-size: 24px;
         }
         .email-body {
           padding: 20px;
@@ -89,69 +79,35 @@ export async function POST(req: Request) {
           font-size: 12px;
           color: #666666;
         }
-        .email-footer a {
-          color: #007bff;
-          text-decoration: none;
-        }
-        .button {
-          display: inline-block;
-          background-color: #007bff;
-          color: #ffffff;
-          text-decoration: none;
-          padding: 10px 20px;
-          border-radius: 5px;
-          font-size: 16px;
-          margin: 20px 0;
-        }
-        @media screen and (max-width: 600px) {
-          .email-body {
-            padding: 15px;
-          }
-        }
       </style>
     </head>
     <body>
-      <table role="presentation" class="email-container">
-        <!-- Header -->
+      <table class="email-container">
         <tr>
           <td class="email-header">
-            <h1>
-              <div>
-                <img src="https://res.cloudinary.com/dyflt39oq/image/upload/v1737483608/Veera Rental/jih42rytw2t5olulqk3r.svg" width="100px" alt="">
-              </div>
-              <div>Veera Rental</div>
-            </h1>
+            <h1>Veera Rental</h1>
             <h3>Thank You for Reaching Out</h3>
             <p>We’ve Received Your Submission</p>
           </td>
         </tr>
-        <!-- Body -->
         <tr>
           <td class="email-body">
             <p>Dear ${firstName} ${lastName},</p>
-            <p>
-              Thank you for contacting us at <strong>Veera Rental</strong>. We have successfully received your message and our team will get back to you as soon as possible.
-            </p>
-            <p><strong>Here are the details you submitted:</strong></p>
+            <p>Thank you for contacting us at <strong>Veera Rental</strong>. We have received your message and our team will get back to you as soon as possible.</p>
+            <p><strong>Details Submitted:</strong></p>
             <ul>
-              <li><strong>Selected Service:</strong> ${selectedPackage}</li>
+              <li><strong>Service:</strong> ${selectedPackage}</li>
               <li><strong>Email:</strong> ${email}</li>
-              <li><strong>Phone Number:</strong> ${phoneNumber}</li>
+              <li><strong>Phone:</strong> ${phoneNumber}</li>
               <li><strong>Message:</strong> ${message}</li>
             </ul>
-            <p>
-              If you need to update your submission or have additional questions, please feel free to contact us at <a href="mailto:veerarentals@gmail.com">veerarentals@gmail.com</a>.
-            </p>
-            <p>
-              We appreciate your interest in our services and look forward to assisting you.
-            </p>
-            <p>Best regards,<br>The GrandFleet Team</p>
+            <p>We appreciate your interest in our services.</p>
+            <p>Best regards,<br>The Veera Rentals Team</p>
           </td>
         </tr>
-        <!-- Footer -->
         <tr>
           <td class="email-footer">
-            <p>&copy; 2025 GrandFleet. All rights reserved.</p>
+            <p>&copy; 2025 Veera Rentals. All rights reserved.</p>
           </td>
         </tr>
       </table>
@@ -159,29 +115,23 @@ export async function POST(req: Request) {
     </html>
     `;
 
-    // Define email options
+    // Define mail options
     const mailOptions = {
-      from: '"GrandFleet" <support@grandfleet.au>', // Sender address
-      to: email, // Recipient
-      cc: "support@grandfleet.au", // CC to support team
-      subject: "We’ve Received Your Submission", // Subject line
-      html: emailTemplate, // HTML body
-      replyTo: email, // Reply-to address
+      from: `"Veera Rentals" <${GMAILID}>`,
+      to: email,
+      cc: GMAILID,
+      subject: "We’ve Received Your Submission",
+      html: emailTemplate,
+      replyTo: email,
     };
 
-    // Send the email
+    // Send email
     const info = await transporter.sendMail(mailOptions);
-    console.log("Contact form email sent:", info.messageId);
+    console.log("Email sent:", info.messageId);
 
     return NextResponse.json({ message: "Email sent successfully!" });
-  } catch (error: unknown) {
-    let errorMessage = "Unknown error";
-
-    if (error instanceof Error) {
-      errorMessage = error.message;
-    }
-
-    console.error("Error sending email:", errorMessage);
-    return NextResponse.json({ error: errorMessage }, { status: 500 });
+  } catch (error) {
+    console.error("Error sending email:", error);
+    return NextResponse.json({ error: "Failed to send email" }, { status: 500 });
   }
 }

@@ -115,31 +115,42 @@ const Contact = () => {
           </CardDescription>
           <CardContent className="p-0">
             <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+              <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="space-y-6"
+              >
                 <FormField
                   control={form.control}
                   name="selectedPackage"
                   render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Package</FormLabel>
-                    <FormControl>
-                    <select
-                      value={field.value}
-                      onChange={(e) => field.onChange(e.target.value)}
-                      className="border-white bg-black text-white p-2 rounded"
-                    >
-                      <option value="" disabled>
-                      Select a package
-                      </option>
-                      <option value="Daily Rentals">Daily Rentals</option>
-                      <option value="Private Rentals">Private Rentals</option>
-                      <option value="Rent-to-Own">Rent-to-Own</option>
-                      <option value="Rideshare Rentals">Rideshare Rentals</option>
-                      <option value="Mechanical Services">Mechanical Services</option>
-                    </select>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
+                    <FormItem>
+                      <FormLabel>Package</FormLabel>
+                      <FormControl>
+                        <div className="border border-white rounded-md">
+                          <select
+                            value={field.value}
+                            onChange={(e) => field.onChange(e.target.value)}
+                            className="border-white bg-black text-white p-2 rounded w-full"
+                          >
+                            <option value="" disabled>
+                              Select a package
+                            </option>
+                            <option value="Daily Rentals">Daily Rentals</option>
+                            <option value="Private Rentals">
+                              Private Rentals
+                            </option>
+                            <option value="Rent-to-Own">Rent-to-Own</option>
+                            <option value="Rideshare Rentals">
+                              Rideshare Rentals
+                            </option>
+                            <option value="Mechanical Services">
+                              Mechanical Services
+                            </option>
+                          </select>
+                        </div>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
                   )}
                 />
 
@@ -147,17 +158,17 @@ const Contact = () => {
                   control={form.control}
                   name="firstName"
                   render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>First name</FormLabel>
-                    <FormControl>
-                    <Input
-                      className="border-white bg-black text-white p-2 rounded"
-                      placeholder="John"
-                      {...field}
-                    />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
+                    <FormItem>
+                      <FormLabel>First name</FormLabel>
+                      <FormControl>
+                        <Input
+                          className="border-white bg-black text-white p-2 rounded"
+                          placeholder="John"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
                   )}
                 />
 
@@ -165,17 +176,17 @@ const Contact = () => {
                   control={form.control}
                   name="lastName"
                   render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Last name</FormLabel>
-                    <FormControl>
-                    <Input
-                      className="border-white bg-black text-white p-2 rounded"
-                      placeholder="Doe"
-                      {...field}
-                    />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
+                    <FormItem>
+                      <FormLabel>Last name</FormLabel>
+                      <FormControl>
+                        <Input
+                          className="border-white bg-black text-white p-2 rounded"
+                          placeholder="Doe"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
                   )}
                 />
 
@@ -183,17 +194,17 @@ const Contact = () => {
                   control={form.control}
                   name="email"
                   render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Email</FormLabel>
-                    <FormControl>
-                    <Input
-                      className="border-white bg-black text-white p-2 rounded"
-                      placeholder="example@email.com"
-                      {...field}
-                    />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
+                    <FormItem>
+                      <FormLabel>Email</FormLabel>
+                      <FormControl>
+                        <Input
+                          className="border-white bg-black text-white p-2 rounded"
+                          placeholder="example@email.com"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
                   )}
                 />
 
@@ -201,17 +212,17 @@ const Contact = () => {
                   control={form.control}
                   name="phoneNumber"
                   render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Phone number</FormLabel>
-                    <FormControl>
-                    <Input
-                      className="border-white bg-black text-white p-2 rounded"
-                      placeholder="1234567890"
-                      {...field}
-                    />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
+                    <FormItem>
+                      <FormLabel>Phone number</FormLabel>
+                      <FormControl>
+                        <Input
+                          className="border-white bg-black text-white p-2 rounded"
+                          placeholder="1234567890"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
                   )}
                 />
 
@@ -219,37 +230,37 @@ const Contact = () => {
                   control={form.control}
                   name="message"
                   render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Message</FormLabel>
-                    <FormControl>
-                    <Textarea
-                      className="border-white bg-black text-white p-2 rounded"
-                      placeholder="Your message"
-                      {...field}
-                    />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
+                    <FormItem>
+                      <FormLabel>Message</FormLabel>
+                      <FormControl>
+                        <Textarea
+                          className="border-white bg-black text-white p-2 rounded"
+                          placeholder="Your message"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
                   )}
                 />
 
                 <Dialog>
                   <DialogTrigger asChild>
-                  <Button
-                    variant={"secondary"}
-                    type="submit"
-                    className="w-full py-2 px-4"
-                  >
-                    Send message
-                  </Button>
+                    <Button
+                      variant={"secondary"}
+                      type="submit"
+                      className="w-full py-2 px-4"
+                    >
+                      Send message
+                    </Button>
                   </DialogTrigger>
                   <DialogContent className="sm:max-w-[425px]">
-                  <DialogHeader>
-                    <DialogTitle>{message}</DialogTitle>
-                  </DialogHeader>
+                    <DialogHeader>
+                      <DialogTitle>{message}</DialogTitle>
+                    </DialogHeader>
                   </DialogContent>
                 </Dialog>
-                </form>
+              </form>
             </Form>
           </CardContent>
         </Card>
