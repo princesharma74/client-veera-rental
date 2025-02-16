@@ -10,9 +10,18 @@ interface MobileNavProps {
 const MobileNav: React.FC<MobileNavProps> = ({
     navs
 }) => {
+    const [isOpen, setIsOpen] = React.useState(false);
+
+    const handleLinkClick = (href: string) => {
+        setIsOpen(false);
+        setTimeout(() => {
+            window.location.href = href;
+        }, 300); // Adjust the timeout as needed
+    };
+
     return (
         <div className="md:hidden">
-            <Sheet>
+            <Sheet open={isOpen} onOpenChange={setIsOpen}>
                 <SheetTrigger asChild>
                     <button aria-label="Open Menu" className="p-4 relative">
                         <Menu size={24} className='text-white'/>
@@ -22,9 +31,9 @@ const MobileNav: React.FC<MobileNavProps> = ({
                 <SheetContent>
                     <nav>
                         <ul className='gap-4 flex flex-col'>
-                            {navs.map(item=>(
+                            {navs.map(item => (
                                 <li key={item.name}>
-                                    <a href={item.link}>{item.name}</a>
+                                    <a href="#" onClick={() => handleLinkClick(item.link)}>{item.name}</a>
                                 </li>
                             ))}
                         </ul>
